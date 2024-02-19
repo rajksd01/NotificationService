@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
 const { logConfig } = require("./config");
-const mailSender = require("./config/email-config");
 const { ServerConfig } = require("../src/config");
-const routes = require("../src/routes");
-const { GMAIL_EMAIL } = require("./config/server-config");
+const apiRoutes = require("../src/routes");
 
-app.use("/api", routes);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/api", apiRoutes);
 
 app.listen(ServerConfig.PORT, () => {
   console.log("listening on port " + ServerConfig.PORT);
@@ -14,6 +14,4 @@ app.listen(ServerConfig.PORT, () => {
     level: "info",
     message: `Running on port ${ServerConfig.PORT} `,
   });
-
- 
 });
