@@ -8,18 +8,12 @@ const { GMAIL_EMAIL } = require("./config/server-config");
 
 app.use("/api", routes);
 
-app.listen(ServerConfig.PORT, async () => {
+app.listen(ServerConfig.PORT, () => {
   console.log("listening on port " + ServerConfig.PORT);
   logConfig.log({
     level: "info",
     message: `Running on port ${ServerConfig.PORT} `,
   });
 
-  const response = await mailSender.sendMail({
-    from: GMAIL_EMAIL,
-    to: "niteshnepal101@gmail.com",
-    subject: "Test 123",
-    text: "Testing testing",
-  });
-  console.log(response);
+ 
 });
